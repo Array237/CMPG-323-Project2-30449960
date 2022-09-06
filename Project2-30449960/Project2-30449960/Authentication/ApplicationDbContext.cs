@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Project2_30449960.Models;
 
 namespace Project2_30449960.Authentication
 {
@@ -11,6 +12,8 @@ namespace Project2_30449960.Authentication
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<Project2_30449960.Models.Category> Category { get; set; }
     }
 }
 
