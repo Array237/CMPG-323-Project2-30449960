@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace JWTAuthentication
+namespace Project2_30449960
 {
     public class Startup
     {
