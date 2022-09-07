@@ -6,56 +6,54 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Project2_30449960.Authentication;
 using Project2_30449960.Models;
 
 namespace Project2_30449960.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    public class CategoriesController : ControllerBase
+    public class ZonesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly Project2_DB_30449960Context _context;
 
-        public CategoriesController(ApplicationDbContext context)
+        public ZonesController(Project2_DB_30449960Context context)
         {
             _context = context;
         }
 
-        // GET: api/Categories
+        // GET: api/Zones
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategory()
+        public async Task<ActionResult<IEnumerable<Zone>>> GetZone()
         {
-            return await _context.Category.ToListAsync();
+            return await _context.Zone.ToListAsync();
         }
 
-        // GET: api/Categories/5
+        // GET: api/Zones/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(Guid id)
+        public async Task<ActionResult<Zone>> GetZone(Guid id)
         {
-            var category = await _context.Category.FindAsync(id);
+            var zone = await _context.Zone.FindAsync(id);
 
-            if (category == null)
+            if (zone == null)
             {
                 return NotFound();
             }
 
-            return category;
+            return zone;
         }
 
-        // PUT: api/Categories/5
+        // PUT: api/Zones/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(Guid id, Category category)
+        public async Task<IActionResult> PutZone(Guid id, Zone zone)
         {
-            if (id != category.CategoryId)
+            if (id != zone.ZoneId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            _context.Entry(zone).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +61,7 @@ namespace Project2_30449960.Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
+                if (!ZoneExists(id))
                 {
                     return NotFound();
                 }
@@ -76,38 +74,52 @@ namespace Project2_30449960.Controller
             return NoContent();
         }
 
-        // POST: api/Categories
+        // POST: api/Zones
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<Zone>> PostZone(Zone zone)
         {
-            _context.Category.Add(category);
-            await _context.SaveChangesAsync();
+            _context.Zone.Add(zone);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (ZoneExists(zone.ZoneId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
+            return CreatedAtAction("GetZone", new { id = zone.ZoneId }, zone);
         }
 
-        // DELETE: api/Categories/5
+        // DELETE: api/Zones/5
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Category>> DeleteCategory(Guid id)
+        public async Task<ActionResult<Zone>> DeleteZone(Guid id)
         {
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var zone = await _context.Zone.FindAsync(id);
+            if (zone == null)
             {
                 return NotFound();
             }
 
-            _context.Category.Remove(category);
+            _context.Zone.Remove(zone);
             await _context.SaveChangesAsync();
 
-            return category;
+            return zone;
         }
 
-        private bool CategoryExists(Guid id)
+        private bool ZoneExists(Guid id)
         {
-            return _context.Category.Any(e => e.CategoryId == id);
+            return _context.Zone.Any(e => e.ZoneId == id);
         }
     }
 }

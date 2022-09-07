@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 
 namespace Project2_30449960.Controllers
 {
-    [Authorize (Roles = UserRoles.Admin)]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticateController : ControllerBase
