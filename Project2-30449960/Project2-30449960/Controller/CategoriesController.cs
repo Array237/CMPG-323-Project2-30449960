@@ -13,6 +13,7 @@ namespace Project2_30449960.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
 
     public class CategoriesController : ControllerBase
     {

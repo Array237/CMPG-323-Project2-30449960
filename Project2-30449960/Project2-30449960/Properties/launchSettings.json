@@ -15,7 +15,7 @@
       "launchUrl": "swagger",
       "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
     },
-    "Project2API": {
+    "Project2_30449960": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
