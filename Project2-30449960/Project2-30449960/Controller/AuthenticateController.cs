@@ -1,4 +1,5 @@
-﻿using Project2_30449960.Authentication;
+﻿using Microsoft.AspNetCore.Authorization;
+using Project2_30449960.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +12,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JWTAuthentication.Controllers
+namespace Project2_30449960.Controllers
 {
+    [Authorize (Roles = UserRoles.Admin)]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticateController : ControllerBase
