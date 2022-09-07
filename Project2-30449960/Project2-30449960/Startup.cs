@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Project2_30449960.Authentication;
 using Project2_30449960.Models;
 using System.Text;
@@ -32,7 +33,7 @@ namespace Project2_30449960
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v2", new OpenApiInfo
                 {
-                    Title = "JWTToken_Auth_API",
+                    Title = "Project2_30449960",
                     Version = "v2"
                 }
 
