@@ -12,7 +12,6 @@ namespace Project2_30449960.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class DevicesController : ControllerBase
     {
         private readonly Project2_DB_30449960Context _context;
