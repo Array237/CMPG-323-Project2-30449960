@@ -91,7 +91,7 @@ namespace Project2_30449960.Controller
 
         // DELETE: api/Categories/5
         [Authorize]
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteCatagory/{id}")]
         public async Task<ActionResult<Category>> DeleteCategory(Guid id)
         {
             var category = await _context.Category.FindAsync(id);
