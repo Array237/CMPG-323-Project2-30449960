@@ -43,6 +43,19 @@ namespace Project2_30449960.Controller
             return device;
         }
 
+        [HttpGet("GetDeviceByZoneID/{id}")]
+        public async Task<ActionResult<IEnumerable<Device>>> GetDeviceByZoneID(Guid id)
+        {
+            var device = await _context.Device.Where(i => i.ZoneId == id).ToListAsync();
+
+            if (device == null)
+            {
+                return NotFound();
+            }
+
+            return device;
+        }
+
         // PUT: api/Devices/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
